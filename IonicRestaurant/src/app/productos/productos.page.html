@@ -1,0 +1,18 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item *ngFor="let p of lstProductos">      
+      <ion-avatar slot="start">
+        <ion-img [src]="p.pathImagen"></ion-img>
+      </ion-avatar>      
+      <ion-label> {{ p.nombre }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

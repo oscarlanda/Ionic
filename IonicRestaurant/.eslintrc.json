@@ -34,7 +34,17 @@
             "prefix": "app",
             "style": "camelCase"
           }
-        ]
+        ],
+        /*---------------------------------------------
+        Agregar Funciones Vacias
+        Se agrega para permitir agregar funciones vacias
+        -----------------------------------------------*/
+        "no-empty-function": "off",
+        "@typescript-eslint/no-empty-function":"off",
+        "@angular-eslint/no-empty-lifecycle-method": "off"
+        /*---------------------------------------------
+        Agregar Funciones Vacias
+        -----------------------------------------------*/
       }
     },
     {
