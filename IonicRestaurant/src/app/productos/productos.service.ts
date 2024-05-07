@@ -5,7 +5,7 @@ import { Producto } from './productos.model';
   providedIn: 'root'
 })
 export class ProductosService {
-  private lstProductos: Producto[] = [
+  lstProductos: Producto[] = [
     {
       idProducto: 1,
       nombre: 'Enchiladas Rojas',
@@ -40,5 +40,11 @@ export class ProductosService {
 
   mBuscarProductos(idProducto: any){
     return {...this.lstProductos.find( (p) => { return p.idProducto == idProducto;})};
+  }
+
+  mEliminaProductos(idProducto: any){
+    this.lstProductos = this.lstProductos.filter( p => {
+      return p.idProducto != idProducto;
+    });
   }
 }
