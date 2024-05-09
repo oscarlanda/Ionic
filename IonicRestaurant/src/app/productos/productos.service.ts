@@ -43,6 +43,7 @@ export class ProductosService {
   }
 
   mEliminaProductos(idProducto: any){
+    console.log('En el servicio');
     this.lstProductos = this.lstProductos.filter( p => {
       return p.idProducto != idProducto;
     });

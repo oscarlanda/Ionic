@@ -63,8 +63,9 @@ export class ProductosDetallePage implements OnInit, OnDestroy {
   }
 
 
-  mEliminaProductos() {
-    this.alertCtrl.create({
+  async mEliminaProductos() {
+    console.log('evento disparado');
+    const alert = await this.alertCtrl.create({
       header: "Confirmación",
       message: "¿Desea eliminar el producto?",
       buttons: [
@@ -74,9 +75,9 @@ export class ProductosDetallePage implements OnInit, OnDestroy {
           this.router.navigate(['/productos']); 
         }}
       ]
-    }).then(alertEl => {
-      alertEl.present();
-    });     
+    });
+
+    await alert.present();
   }
 
 

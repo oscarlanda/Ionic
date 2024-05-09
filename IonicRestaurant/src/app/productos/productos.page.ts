@@ -6,6 +6,7 @@ import { ProductosService } from './productos.service';
 import { Producto } from './productos.model';
 import { RouterModule } from '@angular/router';
 import { ProductosDetallePage } from './productos-detalle/productos-detalle.page';
+import { ProductosItemComponent } from './productos-item/productos-item.component';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { ProductosDetallePage } from './productos-detalle/productos-detalle.page
   styleUrls: ['./productos.page.scss'],
   standalone: true,
   imports: [IonImg, IonAvatar, IonLabel, IonItem, IonList, IonContent, IonHeader, 
-            IonTitle, IonToolbar, CommonModule, FormsModule, RouterModule]
+            IonTitle, IonToolbar, CommonModule, FormsModule, RouterModule, ProductosItemComponent]
 })
 export class ProductosPage implements OnInit, OnDestroy {
   lstProductos: Producto[] = []; 
