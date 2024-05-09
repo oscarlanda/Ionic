@@ -10,7 +10,7 @@ export const ROUTES: Route [] = [
 
   {
     path: 'productos', 
-    loadChildren: () => import('./productos/routes').then(mod => mod.PRODUCTOS_ROUTES)
+    loadChildren: () => import('./catalogos/productos/routes').then(mod => mod.PRODUCTOS_ROUTES)
   },
 
 ];
