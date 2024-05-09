@@ -1,32 +1,36 @@
-import { Route, Routes } from '@angular/router';
+import { Route, Routes, LoadChildren } from '@angular/router';
 
 export const ROUTES: Route [] = [
 
   {
     path: '',
-    redirectTo: 'tabs',
+    redirectTo: 'inicio',
     pathMatch: 'full',
   },
 
   {
-    path: 'tabs', 
-    //loadChildren: () => import('./tabs/routes').then(mod => mod.MENUPRINCIPAL_ROUTES)
-    loadComponent: () => import('./tabs/tabs.page').then((m) => m.TabsPage),
-    children: [
-      {
-        path: 'inicio',
-        loadComponent: () => import('./inicio/inicio.page').then((m) => m.InicioPage),
-      },
-      {
-        path: 'catalogos',
-        loadComponent: () =>
-          import('./catalogos/catalogos.page').then((m) => m.CatalogosPage),
-      },
-      {
-        path: '**',
-        redirectTo: 'inicio',
-      },
-    ],
+    path: 'inicio',     
+    loadComponent: () => import('./inicio/inicio.page').then((m) => m.InicioPage),     
   },
+  {
+    path: 'catalogos', 
+    loadChildren: () => import('./catalogos/routes').then(mod => mod.MENUCATALOGOS_ROUTES), 
+  },
+  {
+    path: 'cajas', 
+    loadChildren: () => import('./cajas/cajas.page').then(mod => mod.CajasPage), 
+  },
+  {
+    path: 'cocina', 
+    loadChildren: () => import('./cocina/cocina.page').then(mod => mod.CocinaPage), 
+  },
+  {
+    path: 'restaurant', 
+    loadChildren: () => import('./restaurant/restaurant.page').then(mod => mod.RestaurantPage), 
+  },
+  {
+    path: 'reportes', 
+    loadChildren: () => import('./reportes/reportes.page').then(mod => mod.ReportesPage), 
+  }
 
 ];

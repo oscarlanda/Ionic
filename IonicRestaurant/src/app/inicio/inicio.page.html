@@ -1,9 +1,65 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Listen now</ion-title>
+    <ion-title>IONRestaurant</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div class="example-content">Listen now content</div>
+
+  <div *ngIf="tabSelect === 'inicio'">
+    inicio
+  </div>
+
+  <div *ngIf="tabSelect === 'catalogos'">
+    <app-catalogos></app-catalogos>
+  </div>
+
+  <div *ngIf="tabSelect === 'cajas'">
+    <app-cajas></app-cajas>
+  </div>
+
+  <div *ngIf="tabSelect === 'cocina'">
+    <app-cocina></app-cocina>
+  </div>
+
+  <div *ngIf="tabSelect === 'restaurant'">
+    <app-restaurant></app-restaurant>
+  </div>
+
+  <div *ngIf="tabSelect === 'reportes'">
+    <app-reportes></app-reportes>
+  </div>
+  
 </ion-content>
+<ion-footer>
+    <ion-segment [scrollable]="true"  [(ngModel)]="tabSelect">
+      <ion-segment-button value="inicio">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="catalogos">
+        <ion-icon name="book"></ion-icon>
+        <ion-label>Catalogos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="cajas">
+        <ion-icon name="cube"></ion-icon>
+        <ion-label>Cajas</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="cocina">
+        <ion-icon name="fish"></ion-icon>
+        <ion-label>Cocina</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="restaurant">
+        <ion-icon name="restaurant"></ion-icon>
+        <ion-label>Restaurant</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="reportes">
+        <ion-icon name="reader"></ion-icon>
+        <ion-label>Reportes</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="salir">
+        <ion-icon name="log-out"></ion-icon>
+        <ion-label>Salir</ion-label>
+      </ion-segment-button>
+  </ion-segment>
+</ion-footer>
 

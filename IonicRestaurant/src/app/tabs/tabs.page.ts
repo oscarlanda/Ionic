@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonTabs,
-         IonTabBar, IonTabButton, IonIcon
- } from '@ionic/angular/standalone';
+         IonTabBar, IonTabButton, IonIcon, IonCard, IonSegment, IonSegmentButton } from '@ionic/angular/standalone';
  import { addIcons } from 'ionicons';
- import { home, book, fish, reader, restaurant, logOut } from 'ionicons/icons';
+ import { home, book, fish, reader, restaurant, logOut, cube } from 'ionicons/icons';
 import { InicioPage } from '../inicio/inicio.page';
 
  const iconos =  {
@@ -14,7 +13,8 @@ import { InicioPage } from '../inicio/inicio.page';
    fish,
    restaurant,
    reader,
-   logOut
+   logOut,
+   cube
  }
 
 @Component({
@@ -22,7 +22,7 @@ import { InicioPage } from '../inicio/inicio.page';
   templateUrl: './tabs.page.html',
   styleUrls: ['./tabs.page.scss'],
   standalone: true,
-  imports: [IonTabs, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule
+  imports: [IonSegmentButton, IonSegment, IonCard, IonTabs, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule
           , IonTabs, IonTabBar, IonTabButton,IonIcon
   ]
 })
