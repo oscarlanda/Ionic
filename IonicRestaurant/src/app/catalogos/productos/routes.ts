@@ -5,8 +5,8 @@ import { ProductosDetallePage } from './productos-detalle/productos-detalle.page
 // In admin/routes.ts:
 export const PRODUCTOS_ROUTES: Route[] = [
    
-    { path: '', component: ProductosPage},
-    { path: ':idProducto', component: ProductosDetallePage},
+  /*  { path: '', component: ProductosPage},
+    { path: ':idProducto', component: ProductosDetallePage},*/
 
   ];
   
