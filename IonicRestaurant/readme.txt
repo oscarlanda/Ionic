@@ -53,6 +53,17 @@ la linea anterior debe colocarse dentro de build en el apartado options como se 
   ],
 });
 
+# Agregar en Angular.json en la seccion proyects-architect-build-options-assets para poder visualizar los iconos
+  {
+                "glob": "**/*.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+  }
+
+ejemplo
+
+
+
 #despues se debe compilar
 # ng build
 
