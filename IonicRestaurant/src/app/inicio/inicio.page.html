@@ -1,58 +1,29 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>IONRestaurant</ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content>
-
-  <div *ngIf="tabSelect === 'inicio'">
-    inicio
-  </div>
-
-  <div *ngIf="tabSelect === 'catalogos'">
-    <app-catalogos></app-catalogos>
-  </div>
-
-  <div *ngIf="tabSelect === 'cajas'">
-    <app-cajas></app-cajas>
-  </div>
-
-  <div *ngIf="tabSelect === 'cocina'">
-    <app-cocina></app-cocina>
-  </div>
-
-  <div *ngIf="tabSelect === 'restaurant'">
-    <app-restaurant></app-restaurant>
-  </div>
-
-  <div *ngIf="tabSelect === 'reportes'">
-    <app-reportes></app-reportes>
-  </div>
-  
-</ion-content>
-<ion-footer>
-    <ion-segment [scrollable]="true"  [(ngModel)]="tabSelect">
-      <ion-segment-button value="inicio">
+  <ion-content>
+    <ion-router-outlet></ion-router-outlet>
+  </ion-content>
+  <ion-footer>
+    <ion-segment [scrollable]="true">
+      <ion-segment-button value="inicio" [routerLink]="['./','home']">
         <ion-icon name="home"></ion-icon>
         <ion-label>Inicio</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="catalogos">
+      <ion-segment-button value="catalogos" [routerLink]="['./','catalogos']">
         <ion-icon name="book"></ion-icon>
         <ion-label>Catalogos</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="cajas">
+      <ion-segment-button value="cajas" [routerLink]="['./','cajas']">
         <ion-icon name="cube"></ion-icon>
         <ion-label>Cajas</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="cocina">
+      <ion-segment-button value="cocina" [routerLink]="['./','cocina']">
         <ion-icon name="fish"></ion-icon>
         <ion-label>Cocina</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="restaurant">
+      <ion-segment-button value="restaurant" [routerLink]="['./','restaurant']">
         <ion-icon name="restaurant"></ion-icon>
         <ion-label>Restaurant</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="reportes">
+      <ion-segment-button value="reportes" [routerLink]="['./','reportes']">
         <ion-icon name="reader"></ion-icon>
         <ion-label>Reportes</ion-label>
       </ion-segment-button>
@@ -61,5 +32,6 @@
         <ion-label>Salir</ion-label>
       </ion-segment-button>
   </ion-segment>
-</ion-footer>
+  </ion-footer>
 
+ 

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 import { 
   IonContent, 
   IonHeader, 
@@ -22,14 +21,12 @@ import {
   IonSegment,
   IonSegmentButton,
   IonThumbnail, IonRouterOutlet } from '@ionic/angular/standalone';
-import { MENUCATALOGOS_ROUTES } from '../routes/catalogos.route';
-import { ROUTES } from '../app.routes';
-
+import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-catalogos',
-  templateUrl: './catalogos.page.html',
-  styleUrls: ['./catalogos.page.scss'],
+  selector: 'app-inicio',
+  templateUrl: './inicio.page.html',
+  styleUrls: ['./inicio.page.scss'],
   standalone: true,
   imports: [IonRouterOutlet, 
     CommonModule, 
@@ -55,11 +52,11 @@ import { ROUTES } from '../app.routes';
     IonLabel,
     IonSegment,
     IonSegmentButton,
-    IonThumbnail
+    IonThumbnail,
+    RouterModule
   ]
 })
-export class CatalogosPage implements OnInit {
-  tabSelect = null;
+export class InicioPage implements OnInit {
 
   constructor() { }
 
