@@ -59,8 +59,6 @@ import { ROUTES } from '../app.routes';
   ]
 })
 export class CatalogosPage implements OnInit {
-  tabSelect = null;
-
   constructor() { }
 
   ngOnInit() {

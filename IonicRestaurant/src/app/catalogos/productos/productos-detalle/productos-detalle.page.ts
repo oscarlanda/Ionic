@@ -28,7 +28,7 @@ export class ProductosDetallePage implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log('ionViewWillEnter');
+    console.log('ngOnInit');
     this.activatedRoute.paramMap.subscribe(pMap => {
         if(!pMap.has('idProducto')) 
         {
@@ -72,7 +72,8 @@ export class ProductosDetallePage implements OnInit, OnDestroy {
         {text: "Cancelar", role: "cancel"},
         {text: "Eliminar", handler: () =>{
           this.productosService.mEliminaProductos(this.loadedProducto.idProducto);
-          this.router.navigate(['/productos']); 
+          this.router.navigate(['./','inicio','catalogos','productos']); // Ruta Absoluta
+        //  this.router.navigate(['../../../'], { relativeTo:  this.activatedRoute }); // Ruta Relativa
         }}
       ]
     });

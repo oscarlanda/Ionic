@@ -1,16 +1,15 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-title>Productos</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
-  <ion-list>
-   <app-productos-item 
-    *ngFor="let p of lstProductos" 
-    [productoItem]="p">
-   </app-productos-item>
-  </ion-list>
-
+    <ion-router-outlet></ion-router-outlet>
 </ion-content>
+<ion-footer>
+    <ion-toolbar color="primary">
+      <ion-title class="ion-text-start">
+        Productos
+      </ion-title>
+      <ion-buttons slot="end">
+        <ion-button size="large"> <ion-icon name="add-circle"></ion-icon> </ion-button>
+        <ion-button size="large" [routerLink]="['../']"> <ion-icon name="exit"></ion-icon> </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-footer>
+  
