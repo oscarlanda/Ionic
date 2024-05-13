@@ -16,6 +16,10 @@ export const MENUCATALOGOSPRODUCTOS_ROUTES: Route [] = [
                         path:'productosList/detalle/:idProducto',
                         loadComponent: () => import('../catalogos/productos/productos-detalle/productos-detalle.page').then(mod => mod.ProductosDetallePage),
                   },
+                  {
+                        path:'add',
+                        loadComponent: () => import('../catalogos/productos/productos-add/productos-add.page').then(mod => mod.ProductosAddPage),
+                  },    
             ]          
       }                                                             
 ];

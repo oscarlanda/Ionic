@@ -1,0 +1,26 @@
+<ion-list>
+  <ion-item>
+    <app-imagenup [INImagedir]="Vsimagedir" (OUlocalFile)="MloadImagen($event)"></app-imagenup>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Clave</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+  <ion-item>   
+    <ion-textarea label="Descripción" labelPlacement="floating" [counter]="false" maxlength="500"></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-select class="always-flip"  toggleIcon="caret-down-sharp" interface="popover"  label="Categoría" placeholder="Selecciona">
+      <ion-select-option value="apples">Apples</ion-select-option>
+      <ion-select-option value="oranges">Oranges</ion-select-option>
+      <ion-select-option value="bananas">Bananas</ion-select-option>
+    </ion-select>
+  </ion-item> 
+  <ion-item> 
+    <ion-toggle>Estatus</ion-toggle>
+  </ion-item>
+</ion-list>

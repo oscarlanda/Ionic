@@ -1,0 +1,15 @@
+<ion-card>
+    <img alt="Silhouette of mountains" [src]="(OfileLoad.data === '') ? 'https://ionicframework.com/docs/img/demos/card-media.png' : OfileLoad.data" />    
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+            <ion-label class="normal">Foto:</ion-label>
+            <ion-buttons slot="end">
+                <ion-button (click)="MUpImagen()">
+                    <ion-icon slot="icon-only" name="images"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+        </ion-item>
+      </ion-list>     
+    </ion-card-content>
+  </ion-card>

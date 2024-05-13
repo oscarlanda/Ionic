@@ -5,6 +5,7 @@ import { Producto } from './productos.model';
   providedIn: 'root'
 })
 export class ProductosService {
+ 
   lstProductos: Producto[] = [
     {
       idProducto: 1,
