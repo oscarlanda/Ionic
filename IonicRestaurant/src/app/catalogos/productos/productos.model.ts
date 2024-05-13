@@ -4,6 +4,7 @@ export interface Producto {
     descripcion?: string;
     categoria?: number;
     pathImagen?: string;
+    imgbase64?: string;
     fregistro?: string;
     fedicion?: string;
     estatus?: number;
