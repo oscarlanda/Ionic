@@ -1,3 +1,4 @@
+<form [formGroup]="FproductoAdd">
 <ion-grid class="childforscroll">
   <ion-row>
     <ion-col size-md="6" offset-md="3">
@@ -6,26 +7,50 @@
         <ion-item>
           <app-imagenup [INImagedir]="Vsimagedir" (OUlocalFile)="MloadImagen($event)"></app-imagenup>
         </ion-item>
-        <ion-item>
+        <!--<ion-item>
           <ion-label position="floating">Clave</ion-label>
           <ion-input type="text"></ion-input>
-        </ion-item>
+        </ion-item>-->
         <ion-item>
           <ion-label position="floating">Nombre</ion-label>
-          <ion-input type="text"></ion-input>
+          <ion-input 
+            formControlName="Vcnombre"
+            type="text">
+          </ion-input>
         </ion-item>
         <ion-item>   
-          <ion-textarea label="Descripción" labelPlacement="floating" [counter]="false" maxlength="500"></ion-textarea>
+          <ion-textarea           
+            formControlName="Vcdescripcion"
+            label="Descripción" 
+            labelPlacement="floating" 
+            [counter]="false" 
+            maxlength="500">
+          </ion-textarea>
         </ion-item>
         <ion-item>
-          <ion-select class="always-flip"  toggleIcon="caret-down-sharp" interface="popover"  label="Categoría" placeholder="Selecciona">
+          <!--<ion-select formControlName="FollowUpType" (ionChange)="reset()"></ion-select>-->
+          <ion-select 
+           formControlName="Vccategoria"
+           class="always-flip"  
+           toggleIcon="caret-down-sharp" 
+           interface="popover"  
+           label="Categoría" 
+           placeholder="Selecciona">
+           <!-- ejemplo
+            <ion-select-option *ngFor="let val of values" [value]="val.value">
+            {{val.label}}
+           </ion-select-option>
+          -->
             <ion-select-option value="apples">Apples</ion-select-option>
             <ion-select-option value="oranges">Oranges</ion-select-option>
             <ion-select-option value="bananas">Bananas</ion-select-option>
           </ion-select>
         </ion-item> 
         <ion-item> 
-          <ion-toggle>Estatus</ion-toggle>
+          <ion-toggle  
+           formControlName="Vcestatus">
+           Estatus
+          </ion-toggle>
         </ion-item>
         <ion-item lines="none"> 
           <ion-buttons slot="end">
@@ -38,3 +63,4 @@
     </ion-col>
   </ion-row>
 </ion-grid>
+</form>
