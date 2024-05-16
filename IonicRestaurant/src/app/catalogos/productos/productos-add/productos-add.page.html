@@ -1,9 +1,17 @@
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-button [routerLink]="['../']" routerDirection="backward"> 
+      <ion-icon name="arrow-back"></ion-icon>
+      Regresar
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
 <form [formGroup]="FproductoAdd" class="childforscroll">
 <ion-grid  size-md="6" offset-md="3">
   <ion-row>
     <ion-col>
       <ion-item>
-        <app-imagenup [INImagedir]="Vsimagedir" (OUlocalFile)="MloadImagen($event)"></app-imagenup>
+        <app-imagenup [OfileLoad]="OfileLoad" (OUlocalFile)="MloadImagen($event)"></app-imagenup>
       </ion-item>
     </ion-col>
   </ion-row>
@@ -15,7 +23,7 @@
           <ion-input type="text"></ion-input>
         </ion-item>-->
         <ion-item>
-          <ion-label position="floating">Nombre</ion-label>
+          <ion-label position="floating">Nombre <span class="charForced">*</span></ion-label>
           <ion-input 
             formControlName="Vcnombre"
             type="text">
@@ -23,9 +31,9 @@
         </ion-item>
     </ion-col>
   </ion-row>
-  <ion-row *ngIf="!FproductoAdd.get('Vcnombre')?.valid && FproductoAdd.get('Vcnombre')?.touched">
+  <ion-row class="errorValidator" *ngIf="!FproductoAdd.get('Vcnombre')?.valid && FproductoAdd.get('Vcnombre')?.touched">
     <ion-col>
-      <p>El Nombre debe tener  de 1 a 80 Caracteres</p>
+      <p>El Nombre debe tener  de 1 a 60 Caracteres</p>
     </ion-col>
   </ion-row>
 
@@ -46,14 +54,15 @@
   <ion-row>
     <ion-col>
       <ion-item>
+        <ion-label position="floating">Categoria <span class="charForced">*</span></ion-label> 
         <!--<ion-select formControlName="FollowUpType" (ionChange)="reset()"></ion-select>-->
         <ion-select 
          formControlName="Vccategoria"
          class="always-flip"  
          toggleIcon="caret-down-sharp" 
-         interface="popover"  
-         label="Categoría" 
-         placeholder="Selecciona">
+         interface="popover"          
+         placeholder="Selecciona"
+         style="padding-top: 10px;">
          <!-- ejemplo
           <ion-select-option *ngFor="let val of values" [value]="val.value">
           {{val.label}}
@@ -66,11 +75,19 @@
       </ion-item> 
     </ion-col>
   </ion-row>
+  <ion-row class="errorValidator" *ngIf="!FproductoAdd.get('Vccategoria')?.valid && FproductoAdd.get('Vccategoria')?.touched">
+    <ion-col>
+      <p>Seleccione al menos una Categoria</p>
+    </ion-col>
+  </ion-row>
+
   <ion-row>
     <ion-col>
       <ion-item> 
         <ion-toggle  
-         formControlName="Vcestatus">
+         formControlName="Vcestatus"
+         [checked]="Vbestatus"
+         (ionChange)="EEstatus_Change($event)">
          Estatus
         </ion-toggle>
       </ion-item>
@@ -80,8 +97,8 @@
     <ion-col>
       <ion-item lines="none"> 
         <ion-buttons slot="end">
-          <ion-button fill="solid" color="warning" [disabled]="!FproductoAdd.valid">Guardar</ion-button>
-          <ion-button fill="solid" color="warning" [routerLink]="['../']" routerDirection="backward">Cancelar</ion-button>
+          <ion-button fill="solid" color="warning" [disabled]="!FproductoAdd.valid" (click)="EGuardar_Clic()">Guardar</ion-button>
+          <ion-button fill="solid" color="warning" (click)="MForm_Reset()">Limpiar</ion-button>
         </ion-buttons>
       </ion-item>     
     </ion-col>

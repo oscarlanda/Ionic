@@ -1,6 +1,5 @@
 export interface LocalFile {
-    name: string;
-    path?: string;
+    name: string;  
     format: string;
     data: string;
 }

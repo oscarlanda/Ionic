@@ -2,29 +2,41 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonLabel, IonInput
-  ,IonSelect,IonSelectOption, IonPopover, IonTextarea, IonToggle, IonGrid, IonRow, IonCol, IonButtons, IonButton } from '@ionic/angular/standalone';
+  ,IonSelect,IonSelectOption, IonPopover, IonTextarea, IonToggle, IonGrid, IonRow, IonCol, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { ImagenUpPage } from 'src/app/componentes-externos/imagenUp/imagenup.page';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { LocalFile } from 'src/app/componentes-externos/imagenUp/localfile.interface';
 import { RouterModule } from '@angular/router';
+import { addIcons } from 'ionicons';
+import { arrowBack } from 'ionicons/icons';
+
+const iconos =  {
+  arrowBack
+}
+
 
 @Component({
   selector: 'app-productos-add',
   templateUrl: './productos-add.page.html',
   styleUrls: ['./productos-add.page.scss'],
   standalone: true,
-  imports: [IonButton, IonButtons, IonGrid,IonRow, IonCol, IonToggle, IonTextarea, IonInput, IonLabel, IonItem, IonList, IonContent
+  imports: [IonIcon, IonButton, IonButtons, IonGrid,IonRow, IonCol, IonToggle, IonTextarea, IonInput, IonLabel, IonItem, IonList, IonContent
     , IonHeader, IonTitle, IonToolbar, CommonModule, IonSelect,IonSelectOption, IonPopover, IonTextarea, IonToggle,ImagenUpPage
      ,RouterModule, ReactiveFormsModule]
 })
 export class ProductosAddPage implements OnInit, OnDestroy {
   FproductoAdd: FormGroup;
-  Vsimagedir: string = '';
+  Vbestatus: boolean = false;
   OfileLoad: LocalFile;
 
-  constructor() { 
+  constructor() {     
      defineCustomElements(window);
-     this.Vsimagedir = 'assets/tmpImagenes';
+     addIcons(iconos);
+     this.OfileLoad = {
+      name: '',   
+      format: '',
+      data: ''
+    };
   }
 
   ngOnInit() {
@@ -44,7 +56,7 @@ export class ProductosAddPage implements OnInit, OnDestroy {
 
       Vcdescripcion: new FormControl(null, {
         updateOn: 'blur',
-        validators: [Validators.required, Validators.maxLength(500)]
+        validators: []
       }),
 
       Vccategoria: new FormControl(null, {
@@ -54,9 +66,9 @@ export class ProductosAddPage implements OnInit, OnDestroy {
 
       Vcfoto: new FormControl(null, {updateOn: 'blur'}),
 
-      Vcestatus: new FormControl(null, {
+      Vcestatus: new FormControl(false, {
         updateOn: 'blur',
-        validators: [Validators.required]
+        validators: []
       }),
 
     });
@@ -64,6 +76,7 @@ export class ProductosAddPage implements OnInit, OnDestroy {
 
   MloadImagen(e: any){
     this.OfileLoad = e;
+    this.FproductoAdd.get('Vcfoto')?.patchValue(this.OfileLoad);
   }
 
   
@@ -94,5 +107,22 @@ export class ProductosAddPage implements OnInit, OnDestroy {
   }
   */
 
+  EGuardar_Clic(){
+    console.log(this.FproductoAdd);
+  }
+
+  EEstatus_Change(e: any){
+    this.Vbestatus = !this.Vbestatus;
+    this.FproductoAdd.get('Vcestatus')?.patchValue(this.Vbestatus);
+  }
+
+  MForm_Reset(){
+    this.FproductoAdd.reset();
+    this.OfileLoad = {
+      name: '',   
+      format: '',
+      data: ''
+    };
+  }
 
 }

@@ -25,15 +25,14 @@ const Ciconos =  {
   ]
 })
 export class ImagenUpPage implements OnInit {
-  @Input() INImagedir: string;
+  @Input() OfileLoad: LocalFile;
   @Output() OUlocalFile = new EventEmitter<LocalFile>();
-  public OfileLoad: LocalFile;
+  
 
   constructor(private plt: Platform) { 
     addIcons(Ciconos);
     this.OfileLoad = {
-      name: '',
-      path: '',
+      name: '',   
       format: '',
       data: ''
     };
@@ -59,10 +58,9 @@ export class ImagenUpPage implements OnInit {
 
   async MLoadImage(PPhoto: Photo){    
     const CBase64Data = await this.MLeerBase64(PPhoto);
-    const CfileName = String(new Date().getTime());
+    const CfileName = String(new Date().getTime());  
     this.OfileLoad = {
-      name: CfileName,
-      path: PPhoto.path,
+      name: CfileName,    
       format: PPhoto.format,
       data: CBase64Data
     }
