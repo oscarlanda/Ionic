@@ -3,7 +3,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonLabel
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { Producto } from '../productos.model';
+import { Producto } from '../../../models/productos.model';
 
 @Component({
   selector: 'app-productos-item',

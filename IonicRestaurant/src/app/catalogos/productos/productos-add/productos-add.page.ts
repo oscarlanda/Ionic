@@ -80,6 +80,24 @@ export class ProductosAddPage implements OnInit, OnDestroy {
   }
 
   
+  EGuardar_Clic(){
+    console.log(this.FproductoAdd);
+  }
+
+  EEstatus_Change(e: any){
+    this.Vbestatus = !this.Vbestatus;
+    this.FproductoAdd.get('Vcestatus')?.patchValue(this.Vbestatus);
+  }
+
+  MForm_Reset(){
+    this.FproductoAdd.reset();
+    this.OfileLoad = {
+      name: '',   
+      format: '',
+      data: ''
+    };
+  }
+  
   ionViewWillEnter() {
     console.log('ionViewWillEnter'); 
   }
@@ -106,23 +124,5 @@ export class ProductosAddPage implements OnInit, OnDestroy {
     console.log(JSON.stringify(this.Form.value))
   }
   */
-
-  EGuardar_Clic(){
-    console.log(this.FproductoAdd);
-  }
-
-  EEstatus_Change(e: any){
-    this.Vbestatus = !this.Vbestatus;
-    this.FproductoAdd.get('Vcestatus')?.patchValue(this.Vbestatus);
-  }
-
-  MForm_Reset(){
-    this.FproductoAdd.reset();
-    this.OfileLoad = {
-      name: '',   
-      format: '',
-      data: ''
-    };
-  }
 
 }

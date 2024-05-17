@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonImg, IonGrid, IonRow, IonCol, IonButtons, IonBackButton, IonNav, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductosService } from '../productos.service';
-import { Producto } from '../productos.model';
+import { ProductosService } from '../../../core/productos.service';
+import { Producto } from '../../../models/productos.model';
 import { addIcons } from "ionicons"
 import { trash } from 'ionicons/icons';
 import { AlertController } from '@ionic/angular'
@@ -37,7 +37,7 @@ export class ProductosDetallePage implements OnInit, OnDestroy {
         }
 
         const idProducto= pMap.get('idProducto');
-        this.loadedProducto = this.productosService.mBuscarProductos(idProducto);
+        this.loadedProducto = this.productosService.MProductosFind(idProducto);
     });    
   }
 
@@ -71,7 +71,7 @@ export class ProductosDetallePage implements OnInit, OnDestroy {
       buttons: [
         {text: "Cancelar", role: "cancel"},
         {text: "Eliminar", handler: () =>{
-          this.productosService.mEliminaProductos(this.loadedProducto.idProducto);
+          this.productosService.MProductosDelete(this.loadedProducto.idProducto);
           this.router.navigate(['./','inicio','catalogos','productos']); // Ruta Absoluta
         //  this.router.navigate(['../../../'], { relativeTo:  this.activatedRoute }); // Ruta Relativa
         }}

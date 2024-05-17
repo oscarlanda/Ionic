@@ -3,11 +3,11 @@ export interface Producto {
     nombre?: string;
     descripcion?: string;
     categoria?: number;
-    pathImagen?: string;
+    pathimagen?: string;
     imgbase64?: string;
     fregistro?: string;
     fedicion?: string;
     estatus?: number;
-    fInicial?: string;
-    fFinal?: string;
+    finicial?: string;
+    ffinal?: string;
 }
