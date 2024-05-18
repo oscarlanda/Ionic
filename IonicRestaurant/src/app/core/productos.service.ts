@@ -15,33 +15,8 @@ export class ProductosService {
   private Vsendpoint: string = 'producto';
   private Vsurl: string = '';
   private Oheaders = new HttpHeaders({'Content-Type': 'application/json; charset=UTF-8'});
+  lstProductos: Producto[];
  
-  lstProductos: Producto[] = [
-    {
-      idProducto: 1,
-      nombre: 'Enchiladas Rojas',
-      descripcion: 'Tortilla de Maiz con Mole Rojo, rellenas de carne de cerdo',
-      categoria: 1,
-      pathimagen: './assets/enchiladasRojas.jpg',
-      fregistro: '2021-08-01',
-      fedicion: '2021-08-01',
-      estatus: 0,
-      finicial: '',
-      ffinal: ''
-    },
-    {
-      idProducto: 2,
-      nombre: 'Pozole',
-      descripcion: 'Maiz Pozolero, carne de Cerdo, acompañado de chicharron, tostadas, aguacate y queso',
-      categoria: 1,
-      pathimagen: './assets/pozoleBlanco.jpeg',
-      fregistro: '2021-08-01',
-      fedicion: '2021-08-01',
-      estatus: 0,
-      finicial: '',
-      ffinal: ''
-    }
-  ];
   
   constructor(private httpClient: HttpClient) { 
     this.Vsdomain = environment.domain
