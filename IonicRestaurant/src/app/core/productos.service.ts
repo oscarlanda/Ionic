@@ -28,14 +28,25 @@ export class ProductosService {
      let json: string;
      
      json = JSON.stringify(request);
-     console.log(json);
-
-     //return [...this.lstProductos];
+ 
      return this.httpClient.post<ResponseModel>(
                                  this.Vsurl,    
                                  json,                                                             
                                  {headers: this.Oheaders});
   }
+
+  MProductosSave(request: Producto): Observable<ResponseModel> {
+    let json: string;
+
+    this.Vsurl += '/add';
+
+    json = JSON.stringify(request);
+
+    return this.httpClient.post<ResponseModel>(
+                                this.Vsurl,    
+                                json,                                                             
+                                {headers: this.Oheaders});
+ }
 
   MProductosFind(idProducto: any){
     return {...this.lstProductos.find( (p) => { return p.idProducto == idProducto;})};

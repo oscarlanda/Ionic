@@ -43,8 +43,7 @@ export class ProductosListPage implements OnInit, OnDestroy {
       ffinal: ''
     }
 
-   this.productosService.MProductosGet(request).subscribe(response => {
-      console.log(response);
+   this.productosService.MProductosGet(request).subscribe(response => {     
       this.productosService.lstProductos = response.data;     
       this.lstProductos = response.data;      
     }); 

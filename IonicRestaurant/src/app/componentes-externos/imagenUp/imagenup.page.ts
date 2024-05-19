@@ -3,7 +3,7 @@ import { CommonModule, PlatformLocation } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonCard, IonCardContent, IonLabel, IonList, IonItem, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { images } from 'ionicons/icons';
+import { images,closeCircle } from 'ionicons/icons';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { Platform } from '@ionic/angular'
 import { Directory, Encoding, Filesystem } from '@capacitor/filesystem';
@@ -13,7 +13,8 @@ import { Output, EventEmitter } from '@angular/core';
 
 
 const Ciconos =  {
- images
+ images,
+ closeCircle
 }
 
 @Component({
@@ -54,6 +55,14 @@ export class ImagenUpPage implements OnInit {
     if(Cimg){
       this.MLoadImage(Cimg);
     }
+  }
+
+  async MEraseImagen(){
+    this.OfileLoad = {
+      name: '',   
+      format: '',
+      data: ''
+    };
   }
 
   async MLoadImage(PPhoto: Photo){    
