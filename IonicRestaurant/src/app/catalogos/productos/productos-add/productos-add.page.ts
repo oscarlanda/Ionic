@@ -9,6 +9,7 @@ import { LocalFile } from 'src/app/componentes-externos/imagenUp/localfile.inter
 import { RouterModule } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { arrowBack } from 'ionicons/icons';
+import { CatalogosService } from 'src/app/core/catalogos.service';
 
 const iconos =  {
   arrowBack
@@ -28,8 +29,9 @@ export class ProductosAddPage implements OnInit, OnDestroy {
   FproductoAdd: FormGroup;
   Vbestatus: boolean = false;
   OfileLoad: LocalFile;
+  Va_caracteristicas: any;
 
-  constructor() {     
+  constructor(private catalogosService: CatalogosService) {     
      defineCustomElements(window);
      addIcons(iconos);
      this.OfileLoad = {
@@ -41,6 +43,17 @@ export class ProductosAddPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     console.log('onInit'); 
+
+    this.catalogosService.MCategoriasGet().subscribe({    
+        next: (response) => {
+          console.log(response);
+           this.Va_caracteristicas = response.data;
+        },
+        error: (err) => {
+          console.log(err);
+        },
+        complete: () => console.info('complete')     
+      });
 
     this.FproductoAdd = new FormGroup({   
 
