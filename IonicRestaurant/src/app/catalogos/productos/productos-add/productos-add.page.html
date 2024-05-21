@@ -56,15 +56,14 @@
       <ion-item>
         <ion-label position="floating">Categoria <span class="charForced">*</span></ion-label> 
         <!--<ion-select formControlName="FollowUpType" (ionChange)="reset()"></ion-select>-->
-        <ion-select 
-         formControlName="Vccategoria"
-         class="always-flip"  
-         toggleIcon="caret-down-sharp" 
+        <ion-select        
+         formControlName="Vccategoria"        
          interface="popover"          
          placeholder="Selecciona"
-         style="padding-top: 10px;">
-          <ion-select-option *ngFor="let caract of Va_caracteristicas" [value]="caract.idCaracteristicaProducto">
-          {{caract.descripcion}}
+         style="padding-top: 10px;"
+         (ionChange)="MCategoriaSelect($event)">
+          <ion-select-option *ngFor="let caract of Va_caracteristicas; let i=index" [value]="caract">
+            {{caract.descripcion}}
          </ion-select-option>                 
         </ion-select>
       </ion-item> 

@@ -6,10 +6,14 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonLabel
 import { ImagenUpPage } from 'src/app/componentes-externos/imagenUp/imagenup.page';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { LocalFile } from 'src/app/componentes-externos/imagenUp/localfile.interface';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { arrowBack } from 'ionicons/icons';
 import { CatalogosService } from 'src/app/core/catalogos.service';
+import { Producto } from 'src/app/models/productos.model';
+import { ProductosService } from 'src/app/core/productos.service';
+import { ToastController } from '@ionic/angular';
+import { CategoriaProducto } from 'src/app/models/categoriaProducto.model';
 
 const iconos =  {
   arrowBack
@@ -30,8 +34,13 @@ export class ProductosAddPage implements OnInit, OnDestroy {
   Vbestatus: boolean = false;
   OfileLoad: LocalFile;
   Va_caracteristicas: any;
+  OCategoriaSelected: CategoriaProducto = new CategoriaProducto();
 
-  constructor(private catalogosService: CatalogosService) {     
+  constructor(private router: Router,
+              private catalogosService: CatalogosService,
+              private productosService: ProductosService,
+              private toastCtrl: ToastController
+  ) {     
      defineCustomElements(window);
      addIcons(iconos);
      this.OfileLoad = {
@@ -90,11 +99,53 @@ export class ProductosAddPage implements OnInit, OnDestroy {
   MloadImagen(e: any){
     this.OfileLoad = e;
     this.FproductoAdd.get('Vcfoto')?.patchValue(this.OfileLoad);
+    console.log(this.OfileLoad.data);
   }
 
   
-  EGuardar_Clic(){
+  async EGuardar_Clic(){
+    let request: Producto;
+    let Ofile: LocalFile;
+    let Vs_fileName: string = '';
     console.log(this.FproductoAdd);
+
+    if(!this.FproductoAdd.valid) return;
+
+    Ofile = this.FproductoAdd.get('Vcfoto')?.value;
+    Vs_fileName = Ofile.name+'.'+Ofile.format;
+    
+    request = {
+      'idProducto': 0,
+      'nombre': this.FproductoAdd.get('Vcnombre')?.value,
+      'descripcion': this.FproductoAdd.get('Vcdescripcion')?.value,
+      'categoria': this.OCategoriaSelected.idCategoriaProducto,     
+      'imgbase64': Ofile.data,  
+      'imgName': Vs_fileName,
+      'fregistro': '',
+      'fedicion': '',
+      'estatus':  this.Vbestatus ? 1 : 0, 
+      'finicial': '',
+      'ffinal': ''
+    }
+
+    this.productosService.MProductosSave(request).subscribe({    
+      next: (response) => {
+        console.log(response);
+        
+        if(response.estatus != 0)
+        {
+          this.MshowToast(response.mensaje);
+          return;
+        }
+
+        this.router.navigate(['../','inicio','catalogos','productos']);
+
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => console.info('complete')     
+    });
   }
 
   EEstatus_Change(e: any){
@@ -109,6 +160,26 @@ export class ProductosAddPage implements OnInit, OnDestroy {
       format: '',
       data: ''
     };
+  }
+
+  async MshowToast(mensaje: string) {
+    await this.toastCtrl.create({
+      message: mensaje,
+      duration: 2000,
+      position: "bottom" /*,
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+          console.log("ok clicked");
+        }
+      }]*/
+    }).then(res => res.present());
+}
+
+  MCategoriaSelect(e: any){    
+    this.OCategoriaSelected =  e.target.value ; 
+    console.log(e.target.value);  
+    console.log(this.OCategoriaSelected);
   }
   
   ionViewWillEnter() {

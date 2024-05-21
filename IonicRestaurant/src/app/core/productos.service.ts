@@ -37,7 +37,7 @@ export class ProductosService {
 
   MProductosSave(request: Producto): Observable<ResponseModel> {
     let json: string;
-
+    console.log(request);
     this.Vsurl += '/add';
 
     json = JSON.stringify(request);

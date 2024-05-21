@@ -1,5 +1,5 @@
 <ion-card>
-    <img alt="Silhouette of mountains" [src]="(OfileLoad.data === '') ? 'https://ionicframework.com/docs/img/demos/card-media.png' : OfileLoad.data" />    
+    <img alt="Silhouette of mountains" [src]="(OfileLoad.data === '') ? 'https://ionicframework.com/docs/img/demos/card-media.png' : 'data:image/jpg;base64,' + OfileLoad.data" />    
     <ion-card-content>
       <ion-list>
         <ion-item>

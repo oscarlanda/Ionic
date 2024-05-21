@@ -71,7 +71,7 @@ export class ImagenUpPage implements OnInit {
     this.OfileLoad = {
       name: CfileName,    
       format: PPhoto.format,
-      data: CBase64Data
+      data: CBase64Data.replace(/^data:image\/[a-z]+;base64,/,'')
     }
 
     this.OUlocalFile.emit(this.OfileLoad);    
