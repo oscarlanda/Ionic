@@ -14,6 +14,7 @@ import { Producto } from 'src/app/models/productos.model';
 import { ProductosService } from 'src/app/core/productos.service';
 import { ToastController } from '@ionic/angular';
 import { CategoriaProducto } from 'src/app/models/categoriaProducto.model';
+import { Subscription } from 'rxjs';
 
 const iconos =  {
   arrowBack
@@ -35,6 +36,7 @@ export class ProductosAddPage implements OnInit, OnDestroy {
   OfileLoad: LocalFile;
   Va_caracteristicas: any;
   OCategoriaSelected: CategoriaProducto = new CategoriaProducto();
+  OproductosSubscription: Subscription;
 
   constructor(private router: Router,
               private catalogosService: CatalogosService,
@@ -128,24 +130,26 @@ export class ProductosAddPage implements OnInit, OnDestroy {
       'ffinal': ''
     }
 
-    this.productosService.MProductosSave(request).subscribe({    
-      next: (response) => {
-        console.log(response);
-        
-        if(response.estatus != 0)
-        {
-          this.MshowToast(response.mensaje);
-          return;
-        }
+    this.OproductosSubscription = this.productosService
+                                      .MProductosSave(request)
+                                      .subscribe({    
+                                        next: (response) => {
+                                          console.log(response);
+                                          
+                                          if(response.estatus != 0)
+                                          {
+                                            this.MshowToast(response.mensaje);
+                                            return;
+                                          }
 
-        this.router.navigate(['../','inicio','catalogos','productos']);
+                                          this.router.navigate(['../','inicio','catalogos','productos']);
 
-      },
-      error: (err) => {
-        console.log(err);
-      },
-      complete: () => console.info('complete')     
-    });
+                                        },
+                                        error: (err) => {
+                                          console.log(err);
+                                        },
+                                        complete: () => console.info('complete')     
+                                      });
   }
 
   EEstatus_Change(e: any){
@@ -192,6 +196,7 @@ export class ProductosAddPage implements OnInit, OnDestroy {
 
   ionViewWillLeave() {
     console.log('ionViewWillLeave');
+    this.OproductosSubscription.unsubscribe();
   }
 
   ionViewDidLeave() {

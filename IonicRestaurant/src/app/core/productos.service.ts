@@ -28,7 +28,7 @@ export class ProductosService {
      let json: string;
      
      json = JSON.stringify(request);
- 
+  
      return this.httpClient.post<ResponseModel>(
                                  this.Vsurl,    
                                  json,                                                             
@@ -37,13 +37,13 @@ export class ProductosService {
 
   MProductosSave(request: Producto): Observable<ResponseModel> {
     let json: string;
-    console.log(request);
-    this.Vsurl += '/add';
-
+    let Vs_endpoint: string;
+    
+    Vs_endpoint = this.Vsurl + '/add';
     json = JSON.stringify(request);
 
     return this.httpClient.post<ResponseModel>(
-                                this.Vsurl,    
+                                Vs_endpoint,    
                                 json,                                                             
                                 {headers: this.Oheaders});
  }
